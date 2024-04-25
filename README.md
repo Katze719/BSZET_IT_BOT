@@ -21,6 +21,8 @@ mkdir settings
 docker-compose up -d
 ```
 
+## Activate the Bot with the command `/activate`
+
 ## Dev Setup
 
 1. Setup venv
