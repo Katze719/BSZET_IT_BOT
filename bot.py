@@ -21,6 +21,7 @@ if __name__ == '__main__':
             log.logger.info(f"Synced {len(synced)} command(s)")
         except Exception as e:
             log.logger.exception(e)
+        Plan().download() # first fetch because of a racecondition between the check_plan task and the normal Plan class
         await setup_tasks()
 
     BSZ_BOT.run(os.environ['DISCORD_BOT_TOKEN'])
