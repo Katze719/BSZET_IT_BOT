@@ -4,3 +4,5 @@ from .get import get
 from .set import set
 from .reset import reset
 from .changelog import changelog
+from .activate import activate
+from .deactivate import deactivate
