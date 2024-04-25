@@ -2,16 +2,15 @@ import discord
 import os
 from bsz_bot import BSZ_BOT, setup_tasks, Plan, log
 
-pdf_url = "http://geschuetzt.bszet.de/s-lk-vw/Vertretungsplaene/vertretungsplan-bs-it.pdf"
+SUBSTITUTION_PLAN_PDF_URL = "http://geschuetzt.bszet.de/s-lk-vw/Vertretungsplaene/vertretungsplan-bs-it.pdf"
+SUBSTITUTION_PLAN_FILENAME = "vertretungsplan"
 
 # Benutzername und Passwort für die Authentifizierung
-benutzername = "bsz-et-2324"
-passwort = "schulleiter#23"
-
-file_name = "vertretungsplan"
+USERNAME = "bsz-et-2324"
+PASSWORD = "schulleiter#23"
 
 if __name__ == '__main__':
-    Plan.save_settings(pdf_url, benutzername, passwort, file_name)
+    Plan.save_settings(SUBSTITUTION_PLAN_PDF_URL, USERNAME, PASSWORD, SUBSTITUTION_PLAN_FILENAME)
     
     @BSZ_BOT.event
     async def on_ready():

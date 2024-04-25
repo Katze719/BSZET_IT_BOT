@@ -3,7 +3,7 @@ from discord.ext import tasks
 from ..core import BSZ_BOT
 from ..helpers import *
 
-@tasks.loop(seconds=30)
+@tasks.loop(minutes=5)
 async def check_plan():
     plan = Plan()
 
