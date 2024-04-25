@@ -1,7 +1,13 @@
 # BSZET_IT_BOT
 - [bszet website](https://geschuetzt.bszet.de/index.php?dir=/Schuelerbereich/BS&sort=name)
 
-## Run with Docker-Compose
+## Using the Bot
+
+invite the bot to your discord via https://discord.com/oauth2/authorize?client_id=1150762234620944464&permissions=8&scope=bot
+
+and activate him with `/activate`
+
+## Self-Hosting with Docker-Compose
 
 ```yml
 version: '3'
