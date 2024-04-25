@@ -1,7 +1,7 @@
 import discord
 from ..helpers import *
 
-@discord.app_commands.command(name="plan")
+@discord.app_commands.command(name="plan", description="Get the plan.")
 async def plan(ctx : discord.Interaction):
     plan = Plan()
     error_code = plan.download()

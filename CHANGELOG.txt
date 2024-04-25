@@ -1,0 +1,21 @@
+Version 4.0.0 - 2024-04-24
+
+## Der Bot ist jetzt als Open-Source-Projekt unter der GPL 2.0 Lizenz verfügbar. Ihr könnt den Quellcode [HIER](https://github.com/Katze719/BSZET_IT_BOT) einsehen.
+
+### Added
+- Komplett neu geschriebener Code für den gesamten Bot.
+- Implementierung neuer, optimierter Datenstrukturen für schnellere Antwortzeiten.
+
+### Changed
+- Überarbeitetes Fehlerbehandlungssystem zur besseren Erkennung und Protokollierung von Ausnahmen.
+- Aktualisierung aller Abhängigkeiten auf die neuesten verfügbaren Versionen.
+
+### Fixed
+- Mehrere kleinere Bugs, die die Stabilität und Leistung beeinträchtigten.
+- Spezifische Probleme mit der Speicherverwaltung behoben.
+
+### Removed
+- Entfernung veralteter Befehle, die nicht mehr verwendet werden.
+- Entfernung nicht mehr unterstützter Funktionen.
+
+---

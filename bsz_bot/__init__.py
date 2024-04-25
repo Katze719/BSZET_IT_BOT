@@ -9,6 +9,3 @@ BSZ_BOT.tree.add_command(ping)
 BSZ_BOT.tree.add_command(plan)
 BSZ_BOT.tree.add_command(get)
 BSZ_BOT.tree.add_command(set)
-
-
-
