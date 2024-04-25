@@ -8,7 +8,7 @@ GUILD_SETTINGS_LOCK = threading.Lock()
 class GuildSettings:
     def __init__(self, guild_id):
         self.guild_id = guild_id
-        self.file_path = "guild_settings.json"
+        self.file_path = "/settings/guild_settings.json"
         self.settings = {}
 
         self.load_settings()

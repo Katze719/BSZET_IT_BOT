@@ -1,80 +1,41 @@
 # SchulBot
-
 - [bszet website](https://geschuetzt.bszet.de/index.php?dir=/Schuelerbereich/BS&sort=name)
-bsz-et-2324
-schulleiter#23
 
-## Run with Docker
+## Run with Docker-Compose
 
-1. pull image
-```sh
-docker pull ghcr.io/katze719/schulbot:latest
+```yml
+version: '3'
+
+services:
+  schulbot:
+    image: ghcr.io/katze719/bszet_it_bot:latest
+    restart: always
+    environment:
+      DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN}
+    volumes:
+      - ./settings:/settings
 ```
 
-2. run docker container with `-d`
-
 ```sh
-docker run -d ghcr.io/katze719/schulbot:latest
+mkdir settings
+docker-compose up -d
 ```
 
 ## Dev Setup
 
-1. clone project
+1. Setup venv
 
 ```sh
-git clone https://github.com/Katze719/SchulBot.git
+git clone https://github.com/Katze719/BSZET_IT_BOT.git;
+cd BSZET_IT_BOT;
+python3 -m venv venv;
+source ./venv/bin/activate;
+pip install -r requirements.txt;
 ```
 
-2. cd in dir
+2. Run the bot
 
 ```sh
-cd SchulBot
-```
-
-3. create venv
-
-```sh
-python -m venv venv
-```
-
-4. activate venv
-
-**Windows**
-```sh
-.\venv\Scripts\activate
-```
-**macOS and Linux**
-```sh
-source ./venv/bin/activate
-```
-
-5. install dependencies
-
-```sh
-pip install -r requirements.txt
-```
-
-6. install poppler (preferred to use linux)
-
-**Linux**
-```sh
-sudo apt-get install poppler-utils
-```
-
-**Windows**
-Download the latest Release of poppler [here](https://github.com/oschwartz10612/poppler-windows/releases)
-and change the python line
-```python
-images = convert_from_path(f"{file_name}.pdf")
-```
-to
-```python
-images = convert_from_path(f"{file_name}.pdf", poppler_path=r'C:\path\to\poppler-23.08.0\Library\bin')
-```
-
-
-## How to Run the Bot
-
-```sh
+export DISCORD_BOT_TOKEN="<my token>"
 python3 ./bot.py
 ```
