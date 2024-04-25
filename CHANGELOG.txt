@@ -1,4 +1,4 @@
-Version 4.0.0 - 2024-04-24
+Version 4.0.1 - 2024-04-25
 
 ## Der Bot ist jetzt als Open-Source-Projekt unter der GPL 2.0 Lizenz verfügbar. Ihr könnt den Quellcode [HIER](https://github.com/Katze719/BSZET_IT_BOT) einsehen.
 
