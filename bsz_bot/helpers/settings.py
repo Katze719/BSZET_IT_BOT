@@ -1,18 +1,16 @@
 import json
 import threading
 import os
-from src.log import logger
 
-GUILD_SETTINGS_LOCK = threading.Lock()  # Lock für die Synchronisierung
+GUILD_SETTINGS_LOCK = threading.Lock()
 
 
 class GuildSettings:
     def __init__(self, guild_id):
         self.guild_id = guild_id
-        self.file_path = "/settings/guild_settings.json"
+        self.file_path = "guild_settings.json"
         self.settings = {}
 
-        # Beim Initialisieren direkt die Einstellungen laden
         self.load_settings()
 
         if not "routine" in self.settings:
