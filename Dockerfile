@@ -7,15 +7,7 @@ LABEL org.opencontainers.image.description DESCRIPTION
 RUN set -eux; \
     mkdir /app;
 
-COPY ./bot.py /app/
-COPY ./src/compare_pdf.py /app/src/
-COPY ./src/document.py /app/src/
-COPY ./src/log.py /app/src/
-COPY ./src/helpers.py /app/src/
-COPY ./src/table_parser.py /app/src/
-COPY ./src/settings.py /app/src/
-COPY ./requirements.txt /app/
-
+COPY . /app/
 
 RUN set -eux; \
     apt-get update; \
