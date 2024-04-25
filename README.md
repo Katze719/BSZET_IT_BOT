@@ -1,4 +1,4 @@
-# SchulBot
+# BSZET_IT_BOT
 - [bszet website](https://geschuetzt.bszet.de/index.php?dir=/Schuelerbereich/BS&sort=name)
 
 ## Run with Docker-Compose
