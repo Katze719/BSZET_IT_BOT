@@ -1,7 +1,7 @@
 import json
 import threading
 import os
-from src.log import logger
+from .log import logger
 
 GUILD_SETTINGS_LOCK = threading.Lock()  # Lock für die Synchronisierung
 
