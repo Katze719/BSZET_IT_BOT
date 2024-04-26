@@ -162,3 +162,5 @@ cython_debug/
 *.pdf
 *.png
 *.json
+
+version.txt
