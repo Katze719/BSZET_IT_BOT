@@ -1,4 +1,4 @@
-Version 4.2.0rc - 2024-04-27
+Version 4.2.0 - 2024-04-27
 
 ### Added
 - Der Bot sendet automatisch den Changelog in den Chat, wenn sich die Version geändert hat.
