@@ -122,7 +122,7 @@ class Plan:
         response = requests.get(self.__file_url, auth=HTTPBasicAuth(self.__username, self.__password))
 
         if response.status_code == 200:
-            with open(f"{self.__output}.pdf", "wb") as pdf_file:
+            with open(f"/settings/{self.__output}.pdf", "wb") as pdf_file:
                 pdf_file.write(response.content)
             self.__error = False
             return 200
@@ -140,7 +140,7 @@ class Plan:
         Returns:
             None
         """
-        images = convert_from_path(f"{self.__output}.pdf")
+        images = convert_from_path(f"/settings/{self.__output}.pdf")
 
         combined_image = Image.new('RGB', (images[0].width, sum(image.height for image in images)))
 

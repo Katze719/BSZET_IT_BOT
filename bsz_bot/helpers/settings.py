@@ -36,7 +36,7 @@ class GuildSettings:
             self.set("file_url", "(use default)")
             self.set("username", "(use default)")
             self.set("password", "(use default)")
-            self.set("output_name", f"/settings/{guild.id}")
+            self.set("output_name", f"{guild.id}")
 
         self.__backwards_compatibility_check(guild)
 
@@ -59,7 +59,7 @@ class GuildSettings:
         if not "password" in self.settings:
             self.set("password", "(use default)")
         if not "output_name" in self.settings:
-            self.set("output_name", f"/settings/{guild.id}")
+            self.set("output_name", f"{guild.id}")
 
 
     def load_settings(self):
