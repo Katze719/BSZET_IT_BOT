@@ -1,12 +1,13 @@
 import json
 import threading
 import os
+import discord
 
 GUILD_SETTINGS_LOCK = threading.Lock()
 
 
 class GuildSettings:
-    def __init__(self, guild_id):
+    def __init__(self, guild : discord.Guild):
         """
         Initializes a new instance of the GuildSettings class.
 
@@ -21,16 +22,45 @@ class GuildSettings:
         - "routine" with False
         - "routine_channel_id" with 0
         """
-        self.guild_id = guild_id
+        
+        self.guild_id = guild.id
         self.file_path = "/settings/guild_settings.json"
         self.settings = {}
 
         self.load_settings()
 
         if not "routine" in self.settings:
-            self.set("name", "")
+            self.set("name", guild.name)
             self.set("routine", False)
             self.set("routine_channel_id", 0)
+            self.set("file_url", "(use default)")
+            self.set("username", "(use default)")
+            self.set("password", "(use default)")
+            self.set("output_name", f"/settings/{guild.name}-{guild.id}")
+
+        self.__backwards_compatibility_check(guild)
+
+    def __backwards_compatibility_check(self, guild : discord.Guild):
+        """
+        Check if the settings file is in the old format and convert it to the new format if necessary.
+
+        This method checks if the settings file is in the old format by checking if the "name" key is present.
+        """
+        if not "name" in self.settings:
+            self.set("name", guild.name)
+        if not "routine" in self.settings:
+            self.set("routine", False)
+        if not "routine_channel_id" in self.settings:
+            self.set("routine_channel_id", 0)
+        if not "file_url" in self.settings:
+            self.set("file_url", "(use default)")
+        if not "username" in self.settings:
+            self.set("username", "(use default)")
+        if not "password" in self.settings:
+            self.set("password", "(use default)")
+        if not "output_name" in self.settings:
+            self.set("output_name", f"/settings/{guild.name}-{guild.id}")
+
 
     def load_settings(self):
         """

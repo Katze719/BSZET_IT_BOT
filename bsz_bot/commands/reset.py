@@ -12,7 +12,7 @@ async def reset(ctx : discord.Interaction):
     Returns:
         None
     """
-    s = GuildSettings(ctx.guild.id)
+    s = GuildSettings(ctx.guild)
     s.settings.clear()
     s.save_settings()
     await ctx.response.send_message(embed=simple_embed("Reset!", 'success'))

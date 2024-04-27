@@ -33,6 +33,14 @@ docker-compose up -d
 
 ## Activate the Bot with the command `/activate`
 
+## Updating the Bot
+
+```sh
+docker-compose down
+docker pull ghcr.io/katze719/bszet_it_bot:latest
+docker-compose up -d
+```
+
 ## Dev Setup
 
 1. Setup venv

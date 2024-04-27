@@ -21,20 +21,30 @@ async def check_plan():
 
     Returns:
         None
-    """
-    plan = Plan()
-
-    logger.info("checking for new plan")
-    if not plan.new_plan_available():
-        if plan.any_errors():
-            logger.error("check_plan failed")
-        return
-
+    """    
+    logger.info("checking for new plans")
     for guild in BSZ_BOT.guilds:
-        s = GuildSettings(guild.id)
-        if s.get("routine") != "True" or s.get("routine_channel_id") == None:
+
+        s = GuildSettings(guild)
+        if s.get("routine") != "True" or s.get("routine_channel_id") == 0:
             continue
-        file = discord.File(f"{plan.get_file_name()}.png")
         channel = BSZ_BOT.get_channel(int(s.get("routine_channel_id")))
-        if channel:
-            await channel.send(file=file, embed=simple_embed('Neuer Vertretungsplan!', '', f"attachment://{plan.get_file_name()}.png"))
+        if not channel:
+            continue
+
+        plan = Plan(guild)
+
+        if not plan.new_plan_available():
+            if plan.any_errors():
+                await channel.send(embed=simple_embed("Error", f"""Could not fetch the new plan with: 
+                                                `File URL: {s.get('file_url')}`
+                                                `Username: {s.get('username')}`
+                                                `Password: {s.get('password')}`
+                                                
+                                                Try `/plan` to see the error code
+                                                """))
+                logger.error(f"check_plan failed for {guild.name}")
+            continue
+
+        file = discord.File(f"{plan.get_file_name()}.png")
+        await channel.send(file=file, embed=simple_embed('Neuer Vertretungsplan!', '', f"attachment://{plan.get_file_name()}.png"))

@@ -14,8 +14,12 @@ async def set(ctx : discord.Interaction, variable_name: str, value: str):
     Returns:
         None
     """
-    s = GuildSettings(ctx.guild.id)
+    s = GuildSettings(ctx.guild)
     if variable_name in s.get_all_settings():
+        if variable_name == 'output_name':
+            await ctx.response.send_message(embed=simple_embed(f'Set {variable_name}', f"{variable_name} MARKED AS CAN NOT BE SET! (use sudo)"))
+            return
+
         s.set(variable_name, value)
         if variable_name == 'routine' and (value == 'True' or value == 'true'):
             s.set('routine', 'True')
