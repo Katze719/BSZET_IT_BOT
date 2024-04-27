@@ -5,6 +5,23 @@ from ..helpers import *
 
 @tasks.loop(minutes=5)
 async def check_plan():
+    """
+    Asynchronous task that checks for a new plan every 5 minutes.
+
+    This function is decorated with `@tasks.loop(minutes=5)` to run it every 5 minutes.
+    It checks for a new plan by creating a `Plan` object and calling its `new_plan_available()` method.
+    If no new plan is available, it checks if there are any errors by calling the `any_errors()` method of the `Plan` object.
+    If there are errors, it logs an error message with the text "check_plan failed".
+    If a new plan is available, it iterates through the guilds in `BSZ_BOT.guilds` and checks if the "routine" setting is enabled and if the "routine_channel_id" is not None.
+    If the conditions are met, it creates a `discord.File` object with the filename of the plan's image file and sends it to the specified channel using `channel.send()`.
+    The `simple_embed()` function is used to create an embed message with the title "Neuer Vertretungsplan!" and the file attachment.
+
+    Parameters:
+        None
+
+    Returns:
+        None
+    """
     plan = Plan()
 
     logger.info("checking for new plan")
