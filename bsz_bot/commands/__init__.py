@@ -6,3 +6,4 @@ from .reset import reset
 from .changelog import changelog
 from .activate import activate
 from .deactivate import deactivate
+from .status import status
