@@ -2,6 +2,16 @@ import discord
 from ..helpers import *
 
 def parse_changelog():
+    """
+    Parses the CHANGELOG.txt file to retrieve the latest changelog entry.
+
+    Returns:
+        str: The latest changelog entry.
+
+    Raises:
+        FileNotFoundError: If the CHANGELOG.txt file is not found.
+        Exception: If there is an error reading the changelog.
+    """
     try:
         with open('CHANGELOG.txt', 'r') as file:
             content = file.read()
@@ -18,6 +28,15 @@ def parse_changelog():
     
 @discord.app_commands.command(name="changelog", description="Gives you the latest changelog entry.")
 async def changelog(ctx: discord.Interaction):
+    """
+    Gives you the latest changelog entry.
+
+    Parameters:
+        ctx (discord.Interaction): The interaction context.
+
+    Returns:
+        None
+    """
     latest_changelog = parse_changelog()
     if "Error" in latest_changelog or "not found" in latest_changelog:
         await ctx.response.send_message(embed=simple_embed("Error!", latest_changelog))

@@ -1,7 +1,7 @@
 from .tasks import setup_tasks
 from .core import BSZ_BOT
 from .commands import ping, plan, get, set, reset, changelog, activate, deactivate
-from .helpers import Plan, log
+from .helpers import Plan, log, send_update_info
 
 BSZ_BOT.tree.add_command(deactivate)
 BSZ_BOT.tree.add_command(changelog)

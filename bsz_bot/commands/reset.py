@@ -3,6 +3,15 @@ from ..helpers import *
 
 @discord.app_commands.command(name="reset", description="Reset the guild settings.")
 async def reset(ctx : discord.Interaction):
+    """
+    Reset the guild settings.
+
+    Parameters:
+        ctx (discord.Interaction): The interaction object representing the command invocation.
+
+    Returns:
+        None
+    """
     s = GuildSettings(ctx.guild.id)
     s.settings.clear()
     s.save_settings()

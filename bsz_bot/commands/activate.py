@@ -3,6 +3,15 @@ from ..helpers import *
 
 @discord.app_commands.command(name="activate", description="Activates the bot")
 async def activate(ctx : discord.Interaction):
+    """
+    Activates the bot.
+
+    Args:
+        ctx (discord.Interaction): The interaction context.
+
+    Returns:
+        None
+    """
     s = GuildSettings(ctx.guild.id)
     s.set("routine", "True")
     s.set("routine_channel_id", ctx.channel.id)
