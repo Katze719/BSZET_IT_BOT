@@ -1,9 +1,11 @@
 import requests
 import json
+import discord
 from requests.auth import HTTPBasicAuth
 from pdf2image import convert_from_path
 from PIL import Image
 from .log import logger
+from .settings import GuildSettings
 
 import hashlib  
   
@@ -19,12 +21,14 @@ def hash_read_file(fileName):
     """
   
     h1 = hashlib.sha1()
-    with open(fileName, "rb") as file:
-  
-        chunk = 0
-        while chunk != b'':
-            chunk = file.read(1024)
-            h1.update(chunk)
+    try: 
+        with open(fileName, "rb") as file:
+            chunk = 0
+            while chunk != b'':
+                chunk = file.read(1024)
+                h1.update(chunk)
+    except FileNotFoundError:
+        return "File not found"
               
     # 160bit digest should be enough
     return h1.hexdigest()
@@ -32,7 +36,7 @@ def hash_read_file(fileName):
 class Plan:
     __settings_file = "auth_settings.json"
 
-    def __init__(self) -> None:
+    def __init__(self, guild : discord.Guild) -> None:
         """
         Initializes a new instance of the class.
 
@@ -46,8 +50,9 @@ class Plan:
         Returns:
             None
         """
+        self.__guild = guild
         self.__error = False
-        self.__load_settings()
+        self.__load_settings(guild)
 
     @staticmethod
     def save_settings(file_url : str = '', username : str = '', password : str = '', output_name : str = 'document'):
@@ -74,7 +79,7 @@ class Plan:
         with open(Plan.__settings_file, 'w') as file:
             json.dump(data, file, indent=4)
 
-    def __load_settings(self):
+    def __load_settings(self, guild : discord.Guild):
             """
             Load the settings from the JSON file.
 
@@ -95,7 +100,16 @@ class Plan:
                 self.__password = data['password']
                 self.__output = data['output_name']
             except FileNotFoundError:
-                logger.error(f"{Plan.__settings_file} not found")                
+                logger.error(f"{Plan.__settings_file} not found")      
+
+            settings = GuildSettings(guild)
+            if settings.get("file_url") != '(use default)':
+                self.__file_url = settings.get("file_url")
+            if settings.get("username") != '(use default)':
+                self.__username = settings.get("username")
+            if settings.get("password") != '(use default)':
+                self.__password = settings.get("password")
+            self.__output = settings.get("output_name")
 
     def fetch(self) -> int:
         """
@@ -110,8 +124,10 @@ class Plan:
         if response.status_code == 200:
             with open(f"{self.__output}.pdf", "wb") as pdf_file:
                 pdf_file.write(response.content)
+            self.__error = False
             return 200
         else:
+            self.__error = True
             return response.status_code
         
     def save_as_png(self) -> None:

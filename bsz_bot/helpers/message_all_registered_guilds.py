@@ -13,7 +13,7 @@ async def message_all_registered_guilds(embed : discord.Embed):
         None
     """
     for guild in BSZ_BOT.guilds:
-        s = GuildSettings(guild.id)
+        s = GuildSettings(guild)
         if s.get("routine_channel_id") == 0:
             continue
 

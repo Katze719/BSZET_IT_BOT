@@ -12,5 +12,5 @@ async def deactivate(ctx : discord.Interaction):
     Returns:
         None
     """
-    GuildSettings(ctx.guild.id).set("routine", "False")
+    GuildSettings(ctx.guild).set("routine", "False")
     await ctx.response.send_message(embed=simple_embed(f'Deactivated!', f"The bot will no longer inform you if a new substitution plan is available."))

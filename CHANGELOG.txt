@@ -2,6 +2,22 @@ Version 4.2.0rc - 2024-04-26
 
 ### Added
 - Der Bot sendet automatisch den Changelog in den Chat, wenn sich die Version geändert hat.
+- Erweiterung der Bot-Konfiguration
+- Backwards-Compatibility mit Version 4.1.0
+- Die Variablen File_URL, Password und Benutzername für die Authentifizierung kann jetzt wie folgend für jeden Discord individuell gesetzt werden:
+    
+    - `/set file_url <custom url>`
+    - `/set username <custom username>`
+    - `/set password <custom password>`
+    
+**Aktiviert werden können diese einstellungen mit**
+`/set use_custom_settings true`
+
+**Zurücksetzen der werte:**
+
+`/set <variable_name> (use default)`
+oder
+`/reset`
 
 ---
 

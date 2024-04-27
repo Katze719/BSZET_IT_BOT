@@ -12,10 +12,14 @@ async def plan(ctx : discord.Interaction):
     Returns:
         None
     """
-    plan = Plan()
+    plan = Plan(ctx.guild)
     error_code = plan.download()
     if error_code != 200:
-        await ctx.response.send_message(embed=simple_embed(f"request: {error_code}", "ERROR: the pdf document could not be downloaded (ask Paul D. for more Information)"))
+        s = GuildSettings(ctx.guild)
+        await ctx.response.send_message(embed=simple_embed(f"request: {error_code}", f"""ERROR: the pdf document could not be downloaded with:
+                                                           File URL: {s.get('file_url')}
+                                                           Username: {s.get('username')}
+                                                           Password: {s.get('password')}"""))
         return
     file = discord.File(f"{plan.get_file_name()}.png")
     await ctx.response.send_message(file=file, embed=simple_embed('Aktueller Vertretungsplan', '', f"attachment://{plan.get_file_name()}.png"))

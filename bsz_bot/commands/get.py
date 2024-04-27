@@ -13,7 +13,7 @@ async def get(ctx : discord.Interaction, variable_name: str):
     Returns:
         None
     """
-    s = GuildSettings(ctx.guild.id)
+    s = GuildSettings(ctx.guild)
     if variable_name == 'all':
         response = "```toml\n"
         for key, value in s.get_all_settings().items():
