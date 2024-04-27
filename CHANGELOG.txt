@@ -1,3 +1,10 @@
+Version 4.2.2 - 2024-04-27
+
+### Fixed
+- fehler beim senden des plans
+
+---
+
 Version 4.2.1 - 2024-04-27
 
 ### Fixed
