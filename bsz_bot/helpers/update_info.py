@@ -23,7 +23,7 @@ def check_version_change(current_version : str, version_file : str = 'version.tx
     with open(version_file, 'w') as file:
         file.write(current_version)
 
-    return last_version != current_version
+    return last_version != current_version, last_version
 
 async def send_update_info(current_version : str, version_file : str = 'version.txt'):
     """
@@ -36,9 +36,10 @@ async def send_update_info(current_version : str, version_file : str = 'version.
     Returns:
         None
     """
-    if not check_version_change(current_version, version_file):
+    info = check_version_change(current_version, version_file)
+    if not info[0]:
         return
     
-    await message_all_registered_guilds(simple_embed('Auto Update Information', f"[View the latest changelog here](https://github.com/Katze719/BSZET_IT_BOT)\n\n{parse_changelog()}"))
+    await message_all_registered_guilds(simple_embed(f'Auto Update Information {info[1]} -> {current_version}', f"[View the latest changelog here](https://github.com/Katze719/BSZET_IT_BOT)\n\n{parse_changelog()}"))
 
     
