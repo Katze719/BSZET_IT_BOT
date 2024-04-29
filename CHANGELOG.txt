@@ -1,3 +1,13 @@
+Version 4.2.3 - 2024-04-29
+
+### Added
+- Einführung einer Einstellungsmöglichkeit für das Speichervolumen, auf dem die Einstellungen und PDF-Dokumente abgelegt werden.
+
+### Fixed
+- Korrektur der Pfadangaben für PDF-Dateien, um sicherzustellen, dass sie korrekt referenziert und zugänglich sind.
+
+---
+
 Version 4.2.2 - 2024-04-27
 
 ### Fixed

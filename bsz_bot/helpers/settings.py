@@ -14,7 +14,7 @@ class GuildSettings:
         Args:
             guild_id (int): The ID of the guild.
 
-        Initializes the instance with the given guild ID and sets the file path to "/settings/guild_settings.json".
+        Initializes the instance with the given guild ID and sets the file path to "{os.getenv('SETTINGS_VOLUME')}/guild_settings.json".
         Initializes the settings dictionary to an empty dictionary.
         Calls the load_settings method to load the settings from the file.
         If the "routine" key is not present in the settings dictionary, sets the following keys with their respective values:
@@ -24,7 +24,7 @@ class GuildSettings:
         """
         
         self.guild_id = guild.id
-        self.file_path = "/settings/guild_settings.json"
+        self.file_path = f"{os.getenv('SETTINGS_VOLUME')}/guild_settings.json"
         self.settings = {}
 
         self.load_settings()

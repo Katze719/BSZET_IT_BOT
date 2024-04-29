@@ -2,6 +2,8 @@ import discord
 import os
 from bsz_bot import BSZ_BOT, setup_tasks, send_update_info, Plan, log
 
+os.environ['SETTINGS_VOLUME'] = '/settings'
+
 SUBSTITUTION_PLAN_PDF_URL = "http://geschuetzt.bszet.de/s-lk-vw/Vertretungsplaene/vertretungsplan-bs-it.pdf"
 
 # Benutzername und Passwort für die Authentifizierung
@@ -9,7 +11,7 @@ USERNAME = "bsz-et-2324"
 PASSWORD = "schulleiter#23"
 
 CURRENT_VERSION = "v4.2.1"
-CURRENT_VERSION_FILE = "/settings/version.txt"
+CURRENT_VERSION_FILE = f"{os.getenv('SETTINGS_VOLUME')}/version.txt"
 
 if __name__ == '__main__':
     Plan.save_settings(SUBSTITUTION_PLAN_PDF_URL, USERNAME, PASSWORD)
@@ -27,4 +29,4 @@ if __name__ == '__main__':
 
         await send_update_info(CURRENT_VERSION, CURRENT_VERSION_FILE)
 
-    BSZ_BOT.run(os.environ['DISCORD_BOT_TOKEN'])
+    BSZ_BOT.run(os.getenv('DISCORD_BOT_TOKEN'))
