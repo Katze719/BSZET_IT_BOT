@@ -1,3 +1,4 @@
+import os
 import requests
 import json
 import discord
@@ -122,7 +123,7 @@ class Plan:
         response = requests.get(self.__file_url, auth=HTTPBasicAuth(self.__username, self.__password))
 
         if response.status_code == 200:
-            with open(f"/settings/{self.__output}.pdf", "wb") as pdf_file:
+            with open(f"{os.getenv('SETTINGS_VOLUME')}/{self.__output}.pdf", "wb") as pdf_file:
                 pdf_file.write(response.content)
             self.__error = False
             return 200
@@ -140,7 +141,7 @@ class Plan:
         Returns:
             None
         """
-        images = convert_from_path(f"/settings/{self.__output}.pdf")
+        images = convert_from_path(f"{os.getenv('SETTINGS_VOLUME')}/{self.__output}.pdf")
 
         combined_image = Image.new('RGB', (images[0].width, sum(image.height for image in images)))
 
@@ -167,11 +168,11 @@ class Plan:
         Returns:
             bool: True if a new plan is available, False otherwise.
         """
-        old_file_hash = hash_read_file(f"{self.__output}.pdf")
+        old_file_hash = hash_read_file(f"{os.getenv('SETTINGS_VOLUME')}/{self.__output}.pdf")
         if self.download() != 200:
             self.__error = True
             return False
-        new_file_hash = hash_read_file(f"{self.__output}.pdf")
+        new_file_hash = hash_read_file(f"{os.getenv('SETTINGS_VOLUME')}/{self.__output}.pdf")
         self.__error = False
         return old_file_hash != new_file_hash
 

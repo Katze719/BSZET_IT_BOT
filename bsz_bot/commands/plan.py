@@ -21,6 +21,7 @@ async def plan(ctx : discord.Interaction):
                                                            Username: {s.get('username')}
                                                            Password: {s.get('password')}"""))
         return
+    
     file = discord.File(f"{plan.get_file_name()}.png")
     await ctx.response.send_message(file=file, embed=simple_embed('Aktueller Vertretungsplan', '', f"attachment://{plan.get_file_name()}.png"))
 
