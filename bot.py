@@ -4,7 +4,7 @@ from bsz_bot import BSZ_BOT, setup_tasks, send_update_info, Plan, log
 
 os.environ['SETTINGS_VOLUME'] = '/settings'
 
-SUBSTITUTION_PLAN_PDF_URL = "http://geschuetzt.bszet.de/s-lk-vw/Vertretungsplaene/vertretungsplan-bs-it.pdf"
+SUBSTITUTION_PLAN_PDF_URL = "https://geschuetzt.bszet.de/s-lk-vw/Vertretungsplaene/vertretungsplan-bs-it.pdf"
 
 # Benutzername und Passwort für die Authentifizierung
 USERNAME = "bsz-et-2324"

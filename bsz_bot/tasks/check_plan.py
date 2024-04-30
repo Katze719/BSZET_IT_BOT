@@ -34,7 +34,7 @@ async def check_plan():
 
         plan = Plan(guild)
 
-        if not plan.new_plan_available():
+        if not await plan.new_plan_available():
             if plan.any_errors():
                 await channel.send(embed=simple_embed(f"Error: {plan.get_error_code()}", f"""Could not fetch the new plan with: 
                                                 `File URL: {s.get('file_url')}`

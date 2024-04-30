@@ -1,3 +1,14 @@
+Version 4.3.0 - 2024-05-01
+
+### Added
+- Umstieg von HTTP auf HTTPX um TLS + async verwenden zu können zum abfragen des PDF dokuments
+
+### Fixed
+- Die berufsschule hat im ernst HTTP geblockt für den Vertretungsplan
+- Hearthbeat fehler mit Discord
+
+---
+
 Version 4.2.3 - 2024-04-29
 
 ### Added

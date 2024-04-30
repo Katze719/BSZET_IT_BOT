@@ -1,8 +1,8 @@
 import os
-import requests
 import json
 import discord
-from requests.auth import HTTPBasicAuth
+import httpx
+from httpx import Auth
 from pdf2image import convert_from_path
 from PIL import Image
 from .log import logger
@@ -112,26 +112,28 @@ class Plan:
             if settings.get("password") != '(use default)':
                 self.__password = settings.get("password")
             self.__output = settings.get("output_name")
-
-    def fetch(self) -> int:
+        
+    async def fetch(self) -> int:
         """
-        Fetches the PDF file from the specified URL using HTTP GET request with authentication.
+        Asynchronously fetches the PDF file from the specified URL using HTTP GET request with authentication.
         
         Returns:
             int: The HTTP status code. Returns 200 if the request is successful and the PDF file is saved.
                  Otherwise, returns the corresponding HTTP status code.
         """
-        response = requests.get(self.__file_url, auth=HTTPBasicAuth(self.__username, self.__password))
-        self.__error_code = response.status_code
-        if response.status_code == 200:
-            with open(f"{os.getenv('SETTINGS_VOLUME')}/{self.__output}.pdf", "wb") as pdf_file:
-                pdf_file.write(response.content)
-            self.__error = False
-            return 200
-        else:
-            self.__error = True
-            return response.status_code
-        
+        auth = (self.__username, self.__password)
+        async with httpx.AsyncClient() as client: 
+            response = await client.get(self.__file_url, auth=auth, timeout=httpx.Timeout(60.0))
+            self.__error_code = response.status_code
+            if response.status_code == 200:
+                with open(f"{os.getenv('SETTINGS_VOLUME')}/{self.__output}.pdf", "wb") as pdf_file:
+                    pdf_file.write(response.content)
+                self.__error = False
+                return 200
+            else:
+                self.__error = True
+                return response.status_code
+
     def save_as_png(self) -> None:
         """
         Save the combined images as a PNG file.
@@ -153,16 +155,16 @@ class Plan:
 
         combined_image.save(f"{self.__output}.png", 'PNG')
 
-    def download(self) -> int:
+    async def download(self) -> int:
         """
         Fetches the data, saves it as a PNG if the fetch was successful, and returns the error code.
         """
-        error_code = self.fetch()
+        error_code = await self.fetch()
         if error_code == 200:
             self.save_as_png()
         return error_code
     
-    def new_plan_available(self) -> bool:
+    async def new_plan_available(self) -> bool:
         """
         Checks if a new plan is available by comparing the hash of the old file with the hash of the new file.
         
@@ -170,7 +172,7 @@ class Plan:
             bool: True if a new plan is available, False otherwise.
         """
         old_file_hash = hash_read_file(f"{os.getenv('SETTINGS_VOLUME')}/{self.__output}.pdf")
-        if self.download() != 200:
+        if await self.download() != 200:
             self.__error = True
             return False
         new_file_hash = hash_read_file(f"{os.getenv('SETTINGS_VOLUME')}/{self.__output}.pdf")

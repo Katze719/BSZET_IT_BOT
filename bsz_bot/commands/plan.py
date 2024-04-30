@@ -13,7 +13,7 @@ async def plan(ctx : discord.Interaction):
         None
     """
     plan = Plan(ctx.guild)
-    error_code = plan.download()
+    error_code = await plan.download()
     if error_code != 200:
         s = GuildSettings(ctx.guild)
         await ctx.response.send_message(embed=simple_embed(f"request: {error_code}", f"""ERROR: the pdf document could not be downloaded with:
