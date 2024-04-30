@@ -36,7 +36,7 @@ async def check_plan():
 
         if not plan.new_plan_available():
             if plan.any_errors():
-                await channel.send(embed=simple_embed("Error", f"""Could not fetch the new plan with: 
+                await channel.send(embed=simple_embed(f"Error: {plan.get_error_code()}", f"""Could not fetch the new plan with: 
                                                 `File URL: {s.get('file_url')}`
                                                 `Username: {s.get('username')}`
                                                 `Password: {s.get('password')}`

@@ -29,6 +29,7 @@ def hash_read_file(fileName):
                 chunk = file.read(1024)
                 h1.update(chunk)
     except FileNotFoundError:
+        logger.error(f"{fileName} not found")
         return "File not found"
               
     # 160bit digest should be enough
@@ -121,7 +122,7 @@ class Plan:
                  Otherwise, returns the corresponding HTTP status code.
         """
         response = requests.get(self.__file_url, auth=HTTPBasicAuth(self.__username, self.__password))
-
+        self.__error_code = response.status_code
         if response.status_code == 200:
             with open(f"{os.getenv('SETTINGS_VOLUME')}/{self.__output}.pdf", "wb") as pdf_file:
                 pdf_file.write(response.content)
@@ -184,6 +185,15 @@ class Plan:
             bool: True if there are any errors, False otherwise.
         """
         return self.__error
+    
+    def get_error_code(self) -> int:
+        """
+        Returns the error code.
+
+        :return: An integer representing the error code.
+        :rtype: int
+        """
+        return self.__error_code
     
     def get_file_name(self) -> str:
         """
