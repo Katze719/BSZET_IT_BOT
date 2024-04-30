@@ -40,8 +40,6 @@ async def check_plan():
                                                 `File URL: {s.get('file_url')}`
                                                 `Username: {s.get('username')}`
                                                 `Password: {s.get('password')}`
-                                                
-                                                Try `/plan` to see the error code
                                                 """))
                 logger.error(f"check_plan failed for {guild.name}")
             continue
