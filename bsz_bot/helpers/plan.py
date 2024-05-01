@@ -121,18 +121,22 @@ class Plan:
             int: The HTTP status code. Returns 200 if the request is successful and the PDF file is saved.
                  Otherwise, returns the corresponding HTTP status code.
         """
-        auth = (self.__username, self.__password)
-        async with httpx.AsyncClient() as client: 
-            response = await client.get(self.__file_url, auth=auth, timeout=httpx.Timeout(60.0))
-            self.__error_code = response.status_code
-            if response.status_code == 200:
-                with open(f"{os.getenv('SETTINGS_VOLUME')}/{self.__output}.pdf", "wb") as pdf_file:
-                    pdf_file.write(response.content)
-                self.__error = False
-                return 200
-            else:
-                self.__error = True
-                return response.status_code
+        try:
+            auth = (self.__username, self.__password)
+            async with httpx.AsyncClient() as client: 
+                response = await client.get(self.__file_url, auth=auth, timeout=httpx.Timeout(60.0))
+                self.__error_code = response.status_code
+                if response.status_code == 200:
+                    with open(f"{os.getenv('SETTINGS_VOLUME')}/{self.__output}.pdf", "wb") as pdf_file:
+                        pdf_file.write(response.content)
+                    self.__error = False
+                    return 200
+                else:
+                    self.__error = True
+                    return response.status_code
+        except Exception as e:
+            logger.error(e)
+            return 0xffff
 
     def save_as_png(self) -> None:
         """
@@ -173,10 +177,8 @@ class Plan:
         """
         old_file_hash = hash_read_file(f"{os.getenv('SETTINGS_VOLUME')}/{self.__output}.pdf")
         if await self.download() != 200:
-            self.__error = True
             return False
         new_file_hash = hash_read_file(f"{os.getenv('SETTINGS_VOLUME')}/{self.__output}.pdf")
-        self.__error = False
         return old_file_hash != new_file_hash
 
     def any_errors(self) -> bool:
