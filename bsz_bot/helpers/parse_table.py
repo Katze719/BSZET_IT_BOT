@@ -15,7 +15,7 @@ def clean_line(line):
     cleaned_line = re.sub(r'\.{2,}', ' ', line)
     return cleaned_line.strip()
 
-def parse_schedule(pdf_path):
+def parse_table(pdf_path):
     schedule_data = defaultdict(list)
 
     with pdfplumber.open(pdf_path) as pdf:
@@ -34,11 +34,13 @@ def parse_schedule(pdf_path):
             for line in lines:
                 cleaned_line = clean_line(line)
 
-                if cleaned_line.startswith("B_"):
+                if re.match(r'^[A-Za-z]_', cleaned_line):                    
                     current_class = cleaned_line
                 elif re.match(r'\b(Mo|Di|Mi|Do|Fr|Sa|So)\b \d{2}\.\d{2}\.\d{4}', cleaned_line):
                     current_date = cleaned_line
-                elif re.search(r'\bfällt aus\b|\bRaumänderung\b|\bverlegt\b|\bganze Klasse\b|\bAufgaben\b', cleaned_line):
+                elif "Datum  Tag  Pos  Lehrer  Fach  Raum  Klasse  Mitteilung  VLehrer Kürzel" == cleaned_line:
+                    continue
+                else:
                     if current_class and current_date:
                         # Extract individual details by splitting on spaces
                         details = cleaned_line.split()
@@ -55,7 +57,8 @@ def parse_schedule(pdf_path):
                                 'notification': details[7] if len(details) > 7 else '',
                                 'substitution': details[8] if len(details) > 8 else '',
                                 'class': current_class,
-                                'full_info': cleaned_line
+                                'full_info': cleaned_line,
+                                'cut_info': " ".join([details[i] for i in range(len(details)) if i not in {0, 1, 2}])
                             }
                         else :
                             details_dict = {
@@ -68,20 +71,9 @@ def parse_schedule(pdf_path):
                                 'notification': details[5] if len(details) > 5 else '',
                                 'substitution': details[6] if len(details) > 6 else '',
                                 'class': current_class,
-                                'full_info': cleaned_line
+                                'full_info': cleaned_line,
+                                'cut_info': " ".join([details[i] for i in range(len(details)) if i not in {0}])
                             }
                         schedule_data[current_class].append(details_dict)
 
     return schedule_data
-
-# Replace this path with the location of the uploaded PDF
-pdf_path = './1142140749861888041.pdf'
-schedule_data = parse_schedule(pdf_path)
-
-# Printing the parsed data in a more readable format
-for class_name, events in schedule_data.items():
-    print(f"Class: {class_name}")
-    for event in events:
-        print(f"  Date: {event['date']}, Details: {event}")
-        pass
-

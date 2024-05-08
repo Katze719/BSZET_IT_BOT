@@ -37,6 +37,8 @@ class GuildSettings:
             self.set("username", "(use default)")
             self.set("password", "(use default)")
             self.set("output_name", f"{guild.id}")
+            self.set("beta_programm", False)
+            self.set("class", False)
 
         self.__backwards_compatibility_check(guild)
 
@@ -60,6 +62,10 @@ class GuildSettings:
             self.set("password", "(use default)")
         if not "output_name" in self.settings:
             self.set("output_name", f"{guild.id}")
+        if not "beta_programm" in self.settings:
+            self.set("beta_programm", False)
+        if not "class" in self.settings:
+            self.set("class", False)
 
 
     def load_settings(self):
