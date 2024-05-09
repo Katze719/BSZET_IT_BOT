@@ -8,6 +8,7 @@ Version 4.4.0-experimental.1 - 2024-05-10
 - `/set class <my class>` example: `/set class IT 22/2`
 - experimental feature: task.get_news - schaut jeden morgen 6:30 ob deine Klasse im aktuellen Vertretungsplan drinn steht und sendet dir daraufhin informationen
 - `/feedback <msg>` um mir feedback zu geben ob die PDF korrekt geparsed worden ist, ich werde mir die PDF dann anschauen und den algorithmus dann anpassen
+- `/print_parsed_table_experimental` gibt dir die PDF in textformat zurück (unformatiert!)
 
 ---
 
