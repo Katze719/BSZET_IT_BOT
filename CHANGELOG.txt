@@ -1,15 +1,14 @@
 Version 4.4.0-experimental.1 - 2024-05-10
 
 ### Added
-- experimental PDF parser
-- `/activate_experimental_features` um an den experimentelen features teilzunehmen
-- `/deactivate_experimental_features`
-- `/news_experimental` schaut ob deine klasse im aktuellen Vertretungsplan drinn steht, wenn ja sendet er dir die informationen
-- `/set class <my class>` example: `/set class IT 22/2`
-- experimental feature: task.get_news - schaut jeden morgen 6:30 ob deine Klasse im aktuellen Vertretungsplan drinn steht und sendet dir daraufhin informationen
-- `/feedback <msg>` um mir feedback zu geben ob die PDF korrekt geparsed worden ist, ich werde mir die PDF dann anschauen und den algorithmus dann anpassen
-- `/print_parsed_table_experimental` gibt dir die PDF in textformat zurück (unformatiert!)
-
+- Experimenteller PDF-Parser
+- Befehl `/activate_experimental_features`, um an experimentellen Funktionen teilzunehmen
+- Befehl `/deactivate_experimental_features`, um experimentelle Funktionen zu deaktivieren
+- Befehl `/news_experimental`, überprüft den aktuellen Vertretungsplan und informiert, wenn die eigene Klasse vertreten ist
+- Befehl `/set class <meine Klasse>`, Beispiel: /set class IT 22/2
+- Experimentelle Funktion: `task.get_news`, überprüft täglich um 6:30 Uhr den aktuellen Vertretungsplan und informiert, wenn die eigene Klasse vertreten ist
+- Befehl `/feedback <Nachricht>`, um Feedback zur Korrektheit des PDF-Parsings zu geben; der Algorithmus wird entsprechend angepasst
+- Befehl `/print_parsed_table_experimental`, gibt die PDF-Daten im Textformat (unformatiert) zurück
 ---
 
 Version 4.3.0 - 2024-05-01

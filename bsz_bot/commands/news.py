@@ -1,6 +1,5 @@
 import discord
 import os
-import re
 from ..helpers import *
 
 @discord.app_commands.command(name="news_experimental", description="Get the latest news for your class.")
@@ -26,4 +25,4 @@ async def news(ctx : discord.Interaction):
     if msg != '':
         await ctx.response.send_message(embed=simple_embed('News', f"```txt\n{msg}\n```"))
     else:
-        await ctx.response.send_message(embed=simple_embed('Heute', 'Keine Neuigkeiten'))
+        await ctx.response.send_message(embed=simple_embed('News', 'Keine Neuigkeiten'))

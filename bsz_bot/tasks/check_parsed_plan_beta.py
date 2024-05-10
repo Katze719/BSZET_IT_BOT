@@ -18,7 +18,7 @@ async def wait_until(hour, minute):
     await asyncio.sleep(wait_seconds)
 
 @tasks.loop(hours=24)
-async def daily_task():
+async def get_news():
     logger.info("sending dayly info")
 
     for guild in BSZ_BOT.guilds:
@@ -47,13 +47,7 @@ async def daily_task():
             await channel.send(embed=simple_embed('Heute', 'Keine Neuigkeiten'))
             
 
-
-    # Hier kannst du die gewünschte Aktion ausführen, z.B. eine Nachricht senden
-    # channel = BSZ_BOT.get_channel(YOUR_CHANNEL_ID)  # Ersetze YOUR_CHANNEL_ID durch die ID deines Channels
-    # if channel:
-    #     await channel.send("Guten Morgen! Es ist 6:30 Uhr.")
-
-@daily_task.before_loop
+@get_news.before_loop
 async def before_daily_task():
     logger.info("waiting until 6:30")
-    await wait_until(6, 30)  # Warte bis 6:30 Uhr morgens
+    await wait_until(6, 30)
