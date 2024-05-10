@@ -1,3 +1,5 @@
+from .parse_table import parse_table, is_today
+from .check_if_class_is_set import check_if_class_is_set
 from .simple_embed import simple_embed
 from .log import logger
 from .settings import GuildSettings
