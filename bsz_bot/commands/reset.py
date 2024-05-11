@@ -2,6 +2,7 @@ import discord
 from ..helpers import *
 
 @discord.app_commands.command(name="reset", description="Reset the guild settings.")
+@admin_required
 async def reset(ctx : discord.Interaction):
     """
     Reset the guild settings.

@@ -32,19 +32,12 @@ async def async_copy(source, destination, buffer_size=1024*1024):
             await dst.write(chunk)
 
 @discord.app_commands.command(name="feedback", description="Write feedback to the Active Developers.")
+@experimental
 async def feedback(ctx : discord.Interaction, msg : str):
-
-    s = GuildSettings(ctx.guild)
-
-    if s.get("beta_programm") != True:
-        await ctx.response.send_message(embed=simple_embed('Error', "Experimental Features are not activated."))
-        return
-
-
     hash = secure_random_string(6)
 
     with open(f'{os.getenv("SETTINGS_VOLUME")}/feedback.txt', 'a') as f:
-        f.write(f"{hash} - {ctx.user} - {ctx.guild.id} - {s.get("class")} : {msg}\n")
+        f.write(f"{hash} - {ctx.user} - {ctx.guild.id} - {GuildSettings(ctx.guild).get("class")} : {msg}\n")
 
     await async_copy(f'{os.getenv("SETTINGS_VOLUME")}/{Plan(ctx.guild).get_file_name()}.pdf', f'{os.getenv("SETTINGS_VOLUME")}/{Plan(ctx.guild).get_file_name()}_{hash}.pdf')
 

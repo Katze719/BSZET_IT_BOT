@@ -2,6 +2,8 @@ import discord
 from ..helpers import *
 
 @discord.app_commands.command(name="activate_experimental_features", description="Activates the Experimental Features")
+@admin_required
+@needs_class
 async def activate_beta_features(ctx : discord.Interaction):
     """
     Activates the bot.
@@ -12,8 +14,5 @@ async def activate_beta_features(ctx : discord.Interaction):
     Returns:
         None
     """
-    if check_if_class_is_set(ctx.guild) == False:
-        await ctx.response.send_message(embed=simple_embed('Error', 'Class is not set.\n Set it with `/set class <classname>`'))
-        return
     GuildSettings(ctx.guild).set("beta_programm", True)
     await ctx.response.send_message(embed=simple_embed(f'Activated Experimental Features!'))

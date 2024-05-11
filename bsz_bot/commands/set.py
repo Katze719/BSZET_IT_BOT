@@ -2,6 +2,7 @@ import discord
 from ..helpers import *
 
 @discord.app_commands.command(name="set", description="Set a variable.")
+@admin_required
 async def set(ctx : discord.Interaction, variable_name: str, value: str):
     """
     Set a variable.

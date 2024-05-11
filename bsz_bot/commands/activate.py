@@ -2,6 +2,7 @@ import discord
 from ..helpers import *
 
 @discord.app_commands.command(name="activate", description="Activates the bot")
+@admin_required
 async def activate(ctx : discord.Interaction):
     """
     Activates the bot.

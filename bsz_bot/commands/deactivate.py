@@ -2,6 +2,7 @@ import discord
 from ..helpers import *
 
 @discord.app_commands.command(name="deactivate", description="Deactivates the bot")
+@admin_required
 async def deactivate(ctx : discord.Interaction):
     """
     Deactivates the bot.
