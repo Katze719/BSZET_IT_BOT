@@ -41,4 +41,4 @@ async def feedback(ctx : discord.Interaction, msg : str):
 
     await async_copy(f'{os.getenv("SETTINGS_VOLUME")}/{Plan(ctx.guild).get_file_name()}.pdf', f'{os.getenv("SETTINGS_VOLUME")}/{Plan(ctx.guild).get_file_name()}_{hash}.pdf')
 
-    await ctx.response.send_message(embed=simple_embed(f'Feedback Sent!', 'Thank you for your feedback!'))
+    await ctx.response.send_message(embed=simple_embed(f'Feedback Sent!', 'Thank you for your feedback!'), ephemeral=True)

@@ -40,6 +40,6 @@ async def send_update_info(current_version : str, version_file : str = 'version.
     if not info[0]:
         return
     
-    await message_all_registered_guilds(simple_embed(f'Auto Update Information\n{info[1]} -> {current_version}', f"[View the latest changelog here](https://github.com/Katze719/BSZET_IT_BOT)\n\n{parse_changelog()}"))
+    await message_all_registered_guilds(simple_embed(f'Auto Update Information\n{info[1]} -> {current_version}', f"[View the full changelog here](https://github.com/Katze719/BSZET_IT_BOT/blob/main/CHANGELOG.txt)\n\n{parse_changelog()}"))
 
     

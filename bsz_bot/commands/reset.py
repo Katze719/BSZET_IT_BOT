@@ -16,4 +16,4 @@ async def reset(ctx : discord.Interaction):
     s = GuildSettings(ctx.guild)
     s.settings.clear()
     s.save_settings()
-    await ctx.response.send_message(embed=simple_embed("Reset!", 'success'))
+    await ctx.response.send_message(embed=simple_embed("Reset!", 'success'), ephemeral=True)
