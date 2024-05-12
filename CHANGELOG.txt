@@ -1,3 +1,18 @@
+Version 4.5.0-experimental.1 (2024-05-12)
+
+### Added
+- **Berechtigungssystem**: Nur Administratoren haben nun Zugriff auf die folgenden Befehle:
+  - `/set`
+  - `/reset`
+  - `/deactivate`
+  - `/activate`
+  - `/deactivate_experimental_features`
+  - `/activate_experimental_features`
+- **Ephemere Befehle**: Einige Befehle wurden auf ephemere Antworten umgestellt, sodass die Antworten nur für den aufrufenden Benutzer sichtbar sind und nicht mehr alle Benutzer Benachrichtigungen erhalten.
+- **Discord Autocomplete**: Für die Befehle `/set` und `/get` wurde eine Autocomplete-Funktion hinzugefügt, die die Benutzerfreundlichkeit verbessert.
+
+---
+
 Version 4.4.0-experimental.1 - 2024-05-10
 
 ### Added

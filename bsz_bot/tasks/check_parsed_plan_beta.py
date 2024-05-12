@@ -21,6 +21,9 @@ async def wait_until(hour, minute):
 async def get_news():
     logger.info("sending dayly info")
 
+    if datetime.today().weekday() > 4:
+        return
+
     for guild in BSZ_BOT.guilds:
         s = GuildSettings(guild)
 

@@ -43,4 +43,4 @@ async def changelog(ctx: discord.Interaction):
     else:
         if len(latest_changelog) > 2048:
             latest_changelog = latest_changelog[:2045] + "..."
-        await ctx.response.send_message(embed=simple_embed("Latest Changelog", f"[View the latest changelog here](https://github.com/Katze719/BSZET_IT_BOT)\n\n{latest_changelog}"))
+        await ctx.response.send_message(embed=simple_embed("Latest Changelog", f"[View the full changelog here](https://github.com/Katze719/BSZET_IT_BOT/blob/main/CHANGELOG.txt)\n\n{latest_changelog}"))
