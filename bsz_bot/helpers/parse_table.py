@@ -40,7 +40,7 @@ def parse_table(pdf_path):
                 cleaned_line = clean_line(line)
                 
                 # Match lines that look like class headers
-                class_match = re.match(r'^(..[A-Z]+\s*\d+/\d+)', cleaned_line)
+                class_match = re.match(r'^([A-Z_]+\s*\d+/\d+)', cleaned_line)
                 if class_match:
                     current_class = class_match.group(1)
                 elif re.match(r'^\b(Mo|Di|Mi|Do|Fr|Sa|So)\b \d{2}\.\d{2}\.\d{4}', cleaned_line):
