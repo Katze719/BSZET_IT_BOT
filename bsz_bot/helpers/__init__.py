@@ -1,5 +1,5 @@
 from .decorators import admin_required, experimental, needs_class
-from .parse_table import parse_table, is_today
+from .parse_table import parse_table, is_today, is_tomorrow
 from .simple_embed import simple_embed
 from .log import logger
 from .settings import GuildSettings

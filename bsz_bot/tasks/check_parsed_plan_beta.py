@@ -40,16 +40,16 @@ async def get_news():
 
         for event in parsed_plan:
             if s.get("class") in event["class"]:
-                if is_today(event["date"]):
+                if is_tomorrow(event["date"]):
                     msg += f"Stunde: {event["position"]}\nLehrer: {event["teacher"]}\nFach:   {event["subject"]}\nRaum:   {event["room"]}\nInfo:   {event["info"]}\n\n"
 
         if msg != '':
-            await channel.send(embed=simple_embed('Heute', f"```txt\n{msg}\n```"))
+            await channel.send(embed=simple_embed('Morgen', f"```txt\n{msg}\n```"))
         else:
-            await channel.send(embed=simple_embed('Heute', 'Keine Neuigkeiten'))
+            await channel.send(embed=simple_embed('Morgen', 'Keine Neuigkeiten'))
             
 
 @get_news.before_loop
 async def before_daily_task():
-    logger.info("waiting until 6:30")
-    await wait_until(6, 30)
+    logger.info("waiting until 18:00")
+    await wait_until(18, 00)

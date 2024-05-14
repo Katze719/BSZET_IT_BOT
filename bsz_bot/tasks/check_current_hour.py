@@ -1,10 +1,6 @@
-import discord
-import asyncio
 import os
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
-from discord.ext import tasks
-from datetime import datetime, timedelta
 from ..core import BSZ_BOT
 from ..helpers import *
 

@@ -1,13 +1,19 @@
 import pdfplumber
 import re
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timedelta
 
 def is_today(date_str):
     """Check if the given date string is today's date."""
     date_format = '%d.%m.%Y'
     date_obj = datetime.strptime(date_str, date_format).date()
     return date_obj == datetime.today().date()
+
+def is_tomorrow(date_str):
+    """Check if the given date string is tomorrow's date."""
+    date_format = '%d.%m.%Y'
+    date_obj = datetime.strptime(date_str, date_format).date()
+    return date_obj == (datetime.today().date() + timedelta(days=1))
 
 def clean_line(line):
     """Remove unnecessary characters and spaces."""
