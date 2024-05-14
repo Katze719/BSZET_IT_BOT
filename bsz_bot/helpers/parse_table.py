@@ -86,6 +86,8 @@ def parse_table(pdf_path):
             del event_list[i + 1]
 
         else:
+            if 'hours' not in event_list[i]:
+                event_list[i]['hours'] = current_event['position']
             i += 1
                 
     return event_list
