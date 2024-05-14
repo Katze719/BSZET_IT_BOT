@@ -1,3 +1,13 @@
+Version 4.6.0-experimental.1 - 2024-05-13
+
+### Added
+- **Experimentelle Funktionen**
+  - `task.get_news` sendet jetzt immer um 18:00 Uhr für den folgenden Tag.
+  - Der Bot sendet jetzt 5 Minuten vor Stundenbeginn (um 7:10, 9:10, 10:55, 13:05) Informationen zur nächsten Stunde, sollte es Änderungen geben.
+  - Verbesserter PDF-Parser mit asynchronen Fähigkeiten.
+  
+---
+
 Version 4.5.0-experimental.1 (2024-05-12)
 
 ### Added

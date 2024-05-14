@@ -30,6 +30,9 @@ async def get_news():
         if s.get("beta_programm") != True:
             continue
 
+        if s.get("routine") != True:
+            continue
+
         parsed_plan = parse_table(f'{os.getenv("SETTINGS_VOLUME")}/{Plan(guild).get_file_name()}.pdf')
 
         channel = BSZ_BOT.get_channel(int(s.get("routine_channel_id")))
@@ -38,19 +41,18 @@ async def get_news():
 
         msg = ''
 
-        for class_name, events in parsed_plan.items():
-            if s.get("class") in class_name:
-                for event in events:
-                    if is_today(event["date"]):
-                        msg += f"Stunde: {event["position"]}\n{event["cut_info"]}\n\n"
+        for event in parsed_plan:
+            if s.get("class") in event["class"]:
+                if is_tomorrow(event["date"]):
+                    msg += f"Stunde: {event["position"]}\nLehrer: {event["teacher"]}\nFach:   {event["subject"]}\nRaum:   {event["room"]}\nInfo:   {event["info"]}\n\n"
 
         if msg != '':
-            await channel.send(embed=simple_embed('Heute', f"```txt\n{msg}\n```"))
+            await channel.send(embed=simple_embed('Morgen', f"```txt\n{msg}\n```"))
         else:
-            await channel.send(embed=simple_embed('Heute', 'Keine Neuigkeiten'))
+            await channel.send(embed=simple_embed('Morgen', 'Keine Neuigkeiten'))
             
 
 @get_news.before_loop
 async def before_daily_task():
-    logger.info("waiting until 6:30")
-    await wait_until(6, 30)
+    logger.info("waiting until 18:00")
+    await wait_until(18, 00)

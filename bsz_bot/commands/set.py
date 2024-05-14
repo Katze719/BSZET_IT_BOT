@@ -35,7 +35,7 @@ async def set(ctx : discord.Interaction, variable_name: str, value: str):
 
         s.set(variable_name, value)
         if variable_name == 'routine' and (value == 'True' or value == 'true'):
-            s.set('routine', 'True')
+            s.set('routine', True)
             s.set('routine_channel_id', ctx.channel.id)
             await ctx.response.send_message(embed=simple_embed(f'Set {variable_name} and routine_channel_id', f"{variable_name} was set to {value} and routine_channel_id was set to {ctx.channel.id}"), ephemeral=True)
             return
