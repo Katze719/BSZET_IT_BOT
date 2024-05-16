@@ -44,7 +44,7 @@ async def get_news():
         for event in parsed_plan:
             if s.get("class") in event["class"]:
                 if is_tomorrow(event["date"]):
-                    msg += f"Stunde: {event["position"]}\nLehrer: {event["teacher"]}\nFach:   {event["subject"]}\nRaum:   {event["room"]}\nInfo:   {event["info"]}\n\n"
+                    msg += f"Stunde: {event["hours"]}\nLehrer: {event["teacher"]}\nFach:   {event["subject"]}\nRaum:   {event["room"]}\nInfo:   {event["info"]}\n\n"
 
         if msg != '':
             await channel.send(embed=simple_embed('Morgen', f"```txt\n{msg}\n```"))
