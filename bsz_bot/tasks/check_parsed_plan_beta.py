@@ -33,6 +33,7 @@ async def get_news():
         if s.get("routine") != True:
             continue
 
+        await Plan(guild).download()
         parsed_plan = parse_table(f'{os.getenv("SETTINGS_VOLUME")}/{Plan(guild).get_file_name()}.pdf')
 
         channel = BSZ_BOT.get_channel(int(s.get("routine_channel_id")))
