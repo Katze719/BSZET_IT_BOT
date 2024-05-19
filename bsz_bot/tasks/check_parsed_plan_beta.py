@@ -20,8 +20,8 @@ async def wait_until(hour, minute):
 @tasks.loop(hours=24)
 async def get_news():
     logger.info("sending dayly info")
-
-    if datetime.today().weekday() > 4:
+    
+    if datetime.today().weekday() == 4 or datetime.today().weekday() == 5:
         return
 
     for guild in BSZ_BOT.guilds:
