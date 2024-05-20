@@ -27,4 +27,4 @@ async def help(ctx : discord.Interaction):
         admin_note = " (Admin only)" if info["admin"] else ""
         embed.add_field(name=f"{info['command']}{admin_note}{experimental_note}", value=f"{info['description']}", inline=False)
 
-    await ctx.response.send_message(embed=embed)
+    await ctx.response.send_message(embed=embed, ephemeral=True)
