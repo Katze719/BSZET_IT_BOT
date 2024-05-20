@@ -12,3 +12,4 @@ from .activate_beta_features import activate_beta_features
 from .deactivate_beta_features import deactivate_beta_features
 from .news import news
 from .feedback import feedback
+from .help import help
