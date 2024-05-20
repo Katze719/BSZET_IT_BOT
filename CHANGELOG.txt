@@ -1,3 +1,14 @@
+Version 4.7.0-experimental.1 - 2024-05-20
+
+### Added
+- Implementierung des Befehls `/help`, um eine Liste aller verfügbaren Befehle anzuzeigen.
+
+### Changes
+- Anpassung des PDF-Parsing-Algorithmus zur Verbesserung der Genauigkeit
+- Anpassungen in der Readme-Datei
+
+---
+
 Version 4.6.0-experimental.1 - 2024-05-13
 
 ### Added
