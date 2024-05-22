@@ -12,9 +12,9 @@ async def news(ctx : discord.Interaction):
 
     for event in parsed_plan:
         if GuildSettings(ctx.guild).get("class") in event["class"]:
-            msg += f"Am {event['date']} {event['day']}\nStunde: {event["hours"]}\nLehrer: {event["teacher"]}\nFach:   {event["subject"]}\nRaum:   {event["room"]}\nInfo:   {event["info"]}\n\n"
+            msg += f"```txt\nAm {event['date']} {event['day']}\nStunde: {event["hours"]}\nLehrer: {event["teacher"]}\nFach:   {event["subject"]}\nRaum:   {event["room"]}\nInfo:   {event["info"]}\n```\n"
 
     if msg != '':
-        await ctx.response.send_message(embed=simple_embed('News', f"```txt\n{msg}\n```"))
+        await ctx.response.send_message(embed=simple_embed('News', f"{msg}"))
     else:
         await ctx.response.send_message(embed=simple_embed('News', 'Keine Neuigkeiten'))

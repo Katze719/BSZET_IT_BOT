@@ -33,13 +33,13 @@ async def get_news(id):
                     msg += f"Stunde: {event['hours']}\nLehrer: {event['teacher']}\nFach:   {event['subject']}\nRaum:   {event['room']}\nInfo:   {event['info']}\n\n"
 
         if msg != '':
-            await channel.send(embed=simple_embed(f'Jetzt!', f"```txt\n{msg}\n```"))
+            await channel.send(embed=simple_embed(f'Nächste Stunde!', f"```txt\n{msg}\n```"))
 
 times_with_ids = {
-    "7:10": 1,
-    "9:10": 3,
-    "10:55": 5,
-    "13:05": 7
+    "7:00": 1,
+    "8:45": 3,
+    "10:45": 5,
+    "12:30": 7
 }
 
 # Füge die Jobs für die angegebenen Zeiten hinzu

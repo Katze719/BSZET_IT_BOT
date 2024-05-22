@@ -1,3 +1,12 @@
+Version 4.7.1-experimental.1 - 2024-05-21
+
+### What's Changed
+- Bump requests from 2.31.0 to 2.32.2 by @dependabot in https://github.com/Katze719/BSZET_IT_BOT/pull/18
+- Die Zeiten wann der Bot sendet wurden angepasst
+- Formatierungen von Nachrichten wurde Angepasst
+
+---
+
 Version 4.7.0-experimental.1 - 2024-05-20
 
 ### Added

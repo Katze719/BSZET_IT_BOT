@@ -26,7 +26,7 @@ async def check_plan():
     for guild in BSZ_BOT.guilds:
 
         s = GuildSettings(guild)
-        if s.get("routine") != "True" or s.get("routine_channel_id") == 0:
+        if s.get("routine") != True or s.get("routine_channel_id") == 0:
             continue
         channel = BSZ_BOT.get_channel(int(s.get("routine_channel_id")))
         if not channel:

@@ -3,6 +3,7 @@ from .simple_embed import simple_embed
 from .settings import GuildSettings
 from typing import Callable, Coroutine, TypeVar, Any
 from functools import wraps
+from .log import logger
 
 T = TypeVar('T', bound=Callable[..., Coroutine[Any, Any, Any]])
 
@@ -12,8 +13,9 @@ def admin_required(func: T) -> T:
         ctx = args[0]
         if not isinstance(ctx, discord.Interaction):
             raise ValueError("Context parameter missing or not first argument.")
-        
+
         if not ctx.user.guild_permissions.administrator:
+            logger.info(f"{ctx.user} is not an admin.")
             await ctx.response.send_message(embed=simple_embed("Error", "You are not an admin."), ephemeral=True)
             return
         return await func(*args, **kwargs)
