@@ -21,6 +21,7 @@ if __name__ == '__main__':
         log.logger.info(f'Bot is ready! Logged in as {BSZ_BOT.user}')
         await BSZ_BOT.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=CURRENT_VERSION))
         try:
+            log.logger.info("Syncing commands...")
             synced = await BSZ_BOT.tree.sync()
             log.logger.info(f"Synced {len(synced)} command(s)")
         except Exception as e:
