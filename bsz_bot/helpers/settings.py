@@ -39,6 +39,8 @@ class GuildSettings:
             self.set("output_name", f"{guild.id}")
             self.set("beta_programm", False)
             self.set("class", False)
+            self.set("error_last_time", False)
+            self.set("use_old_plan_function", False)
 
         self.__backwards_compatibility_check(guild)
 
@@ -66,6 +68,10 @@ class GuildSettings:
             self.set("beta_programm", False)
         if not "class" in self.settings:
             self.set("class", False)
+        if not "error_last_time" in self.settings:
+            self.set("error_last_time", False)
+        if not "use_old_plan_function" in self.settings:
+            self.set("use_old_plan_function", False)
 
 
     def load_settings(self):

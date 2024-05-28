@@ -2,8 +2,7 @@ import discord
 import os
 from ..helpers import *
 
-@discord.app_commands.command(name="news_experimental", description="Get the latest news for your class.")
-@experimental
+@discord.app_commands.command(name="news", description="Get the latest news for your class.")
 @needs_class
 async def news(ctx : discord.Interaction):
     parsed_plan = parse_table(f'{os.getenv("SETTINGS_VOLUME")}/{Plan(ctx.guild).get_file_name()}.pdf')
@@ -11,7 +10,7 @@ async def news(ctx : discord.Interaction):
     msg = ''
 
     for event in parsed_plan:
-        if GuildSettings(ctx.guild).get("class") in event["class"]:
+        if GuildSettings(ctx.guild).get("class").replace(" ", "") in event["class"].replace(" ", ""):
             msg += f"```txt\nAm {event['date']} {event['day']}\nStunde: {event["hours"]}\nLehrer: {event["teacher"]}\nFach:   {event["subject"]}\nRaum:   {event["room"]}\nInfo:   {event["info"]}\n```\n"
 
     if msg != '':

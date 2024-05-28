@@ -27,7 +27,7 @@ async def get_news():
     for guild in BSZ_BOT.guilds:
         s = GuildSettings(guild)
 
-        if s.get("beta_programm") != True:
+        if s.get("use_old_plan_function") == True:
             continue
 
         if s.get("routine") != True:
@@ -43,14 +43,12 @@ async def get_news():
         msg = ''
 
         for event in parsed_plan:
-            if s.get("class") in event["class"]:
+            if s.get("class").replace(" ", "") in event["class"].replace(" ", ""):
                 if is_tomorrow(event["date"]):
                     msg += f"Stunde: {event["hours"]}\nLehrer: {event["teacher"]}\nFach:   {event["subject"]}\nRaum:   {event["room"]}\nInfo:   {event["info"]}\n\n"
 
         if msg != '':
             await channel.send(embed=simple_embed('Morgen', f"```txt\n{msg}\n```"))
-        else:
-            await channel.send(embed=simple_embed('Morgen', 'Keine Neuigkeiten'))
             
 
 @get_news.before_loop

@@ -10,17 +10,18 @@ SUBSTITUTION_PLAN_PDF_URL = "https://geschuetzt.bszet.de/s-lk-vw/Vertretungsplae
 USERNAME = "bsz-et-2324"
 PASSWORD = "schulleiter#23"
 
-CURRENT_VERSION = "v4.7.1-experimental.1"
+CURRENT_VERSION = "v5.0.0"
 CURRENT_VERSION_FILE = f"{os.getenv('SETTINGS_VOLUME')}/version.txt"
 
 if __name__ == '__main__':
     Plan.save_settings(SUBSTITUTION_PLAN_PDF_URL, USERNAME, PASSWORD)
-    
+        
     @BSZ_BOT.event
     async def on_ready():
         log.logger.info(f'Bot is ready! Logged in as {BSZ_BOT.user}')
         await BSZ_BOT.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=CURRENT_VERSION))
         try:
+            log.logger.info("Syncing commands...")
             synced = await BSZ_BOT.tree.sync()
             log.logger.info(f"Synced {len(synced)} command(s)")
         except Exception as e:
