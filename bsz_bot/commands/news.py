@@ -10,7 +10,7 @@ async def news(ctx : discord.Interaction):
     msg = ''
 
     for event in parsed_plan:
-        if GuildSettings(ctx.guild).get("class") in event["class"]:
+        if GuildSettings(ctx.guild).get("class").replace(" ", "") in event["class"].replace(" ", ""):
             msg += f"```txt\nAm {event['date']} {event['day']}\nStunde: {event["hours"]}\nLehrer: {event["teacher"]}\nFach:   {event["subject"]}\nRaum:   {event["room"]}\nInfo:   {event["info"]}\n```\n"
 
     if msg != '':

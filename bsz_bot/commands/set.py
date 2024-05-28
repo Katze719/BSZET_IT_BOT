@@ -39,6 +39,7 @@ async def set(ctx : discord.Interaction, variable_name: str, value: str):
             s.set('routine_channel_id', ctx.channel.id)
             await ctx.response.send_message(embed=simple_embed(f'Set {variable_name} and routine_channel_id', f"{variable_name} was set to {value} and routine_channel_id was set to {ctx.channel.id}"), ephemeral=True)
             return
+        
         await ctx.response.send_message(embed=simple_embed(f'Set {variable_name}', f"{variable_name} was set to {value}"), ephemeral=True)
         return
     await ctx.response.send_message(embed=simple_embed(f'Set {variable_name}', f"{variable_name} Does not exist!"), ephemeral=True)

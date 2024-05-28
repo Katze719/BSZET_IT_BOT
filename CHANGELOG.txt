@@ -9,6 +9,7 @@ Version 5.0.0 - 2024-06-01
 
 - Der Bot erfordert nun die Variable `class`, die mit deiner Klasse gesetzt werden muss, bevor er aktiviert werden kann. Verwende dazu folgenden Befehl:
   - `/set class <meine Klasse>`
+  - **Hinweis:** Achte darauf, wie deine Klasse im Vertretungsplan geschrieben ist. Die meisten Klassen haben ein Leerzeichen zwischen Kürzel und Zahl, zum Beispiel `IT 22/5`.
 
   - Du kannst den Bot weiterhin in der alten Version nutzen, um alle Änderungen zu erhalten. Verwende dazu den Befehl `/use_old_plan_sending_method`, bevor du den Bot mit `/activate` aktivierst.
     - **Warnung:** Befehle, die die Variable `class` benötigen, können jetzt undefiniertes Verhalten verursachen. Sieh mit `/help` nach, welche Befehle eine Klasse benötigen.
