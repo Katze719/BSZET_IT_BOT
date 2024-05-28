@@ -5,4 +5,5 @@ from ..helpers import *
 @admin_required
 async def use_old_plan_sending_method(ctx : discord.Interaction):
     GuildSettings(ctx.guild).set("use_old_plan_function", True)
+    GuildSettings(ctx.guild).set("class", "unknown")
     await ctx.response.send_message(embed=simple_embed(f'Using old plan sending method!'))

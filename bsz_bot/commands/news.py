@@ -2,7 +2,7 @@ import discord
 import os
 from ..helpers import *
 
-@discord.app_commands.command(name="news_experimental", description="Get the latest news for your class.")
+@discord.app_commands.command(name="news", description="Get the latest news for your class.")
 @needs_class
 async def news(ctx : discord.Interaction):
     parsed_plan = parse_table(f'{os.getenv("SETTINGS_VOLUME")}/{Plan(ctx.guild).get_file_name()}.pdf')

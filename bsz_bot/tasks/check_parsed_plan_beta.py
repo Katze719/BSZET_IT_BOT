@@ -27,7 +27,7 @@ async def get_news():
     for guild in BSZ_BOT.guilds:
         s = GuildSettings(guild)
 
-        if s.get("beta_programm") != True:
+        if s.get("use_old_plan_function") == True:
             continue
 
         if s.get("routine") != True:
@@ -49,8 +49,6 @@ async def get_news():
 
         if msg != '':
             await channel.send(embed=simple_embed('Morgen', f"```txt\n{msg}\n```"))
-        else:
-            await channel.send(embed=simple_embed('Morgen', 'Keine Neuigkeiten'))
             
 
 @get_news.before_loop

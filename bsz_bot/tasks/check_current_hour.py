@@ -12,7 +12,7 @@ async def get_news(id):
     for guild in BSZ_BOT.guilds:
         s = GuildSettings(guild)
 
-        if s.get("beta_programm") != True:
+        if s.get("use_old_plan_function") == True:
             continue
 
         if s.get("routine") != True:

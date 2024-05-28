@@ -10,12 +10,12 @@ SUBSTITUTION_PLAN_PDF_URL = "https://geschuetzt.bszet.de/s-lk-vw/Vertretungsplae
 USERNAME = "bsz-et-2324"
 PASSWORD = "schulleiter#23"
 
-CURRENT_VERSION = "v4.7.1-experimental.1"
+CURRENT_VERSION = "v5.0.0"
 CURRENT_VERSION_FILE = f"{os.getenv('SETTINGS_VOLUME')}/version.txt"
 
 if __name__ == '__main__':
     Plan.save_settings(SUBSTITUTION_PLAN_PDF_URL, USERNAME, PASSWORD)
-    
+        
     @BSZ_BOT.event
     async def on_ready():
         log.logger.info(f'Bot is ready! Logged in as {BSZ_BOT.user}')
