@@ -12,7 +12,9 @@ Version 5.0.0 - 2024-06-01
 
   - Du kannst den Bot weiterhin in der alten Version nutzen, um alle Änderungen zu erhalten. Verwende dazu den Befehl `/use_old_plan_sending_method`, bevor du den Bot mit `/activate` aktivierst.
     - **Warnung:** Befehle, die die Variable `class` benötigen, können jetzt undefiniertes Verhalten verursachen. Sieh mit `/help` nach, welche Befehle eine Klasse benötigen.
-    
+
+- Der Befehl `/status` gibt nun auch aus ob Experimentelle Funktionen aktiv sind oder nicht.
+
 ---
 
 Version 4.7.1-experimental.1 - 2024-05-22

@@ -16,6 +16,8 @@ commands_info = [
     {"command": "/feedback <message>", "description": "Submits user feedback", "experimental": False, "admin": False, "needs_class": False},
     {"command": "/print_parsed_table", "description": "Displays the parsed table", "experimental": False, "admin": False, "needs_class": True},
     {"command": "/news", "description": "Retrieves the latest news", "experimental": False, "admin": False, "needs_class": True},
+    {"command": "/use_new_plan_sending_method", "description": "Use the new plan sending method", "experimental": False, "admin": True, "needs_class": True},
+    {"command": "/use_old_plan_sending_method", "description": "Use the old plan sending method", "experimental": False, "admin": True, "needs_class": False},
 ]
 
 @discord.app_commands.command(name="help", description="Print a list of available commands.")
