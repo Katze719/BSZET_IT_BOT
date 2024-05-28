@@ -20,12 +20,9 @@ async def plan(ctx : discord.Interaction):
                                                     `File URL: {s.get('file_url')}`
                                                     `Username: {s.get('username')}`
                                                     `Password: {s.get('password')}`
-                                                    
-                                                    The Bot will now stop sending messages until the error is fixed.
-                                                    
+                                                                                                        
                                                     Debugging tips:
                                                     
-                                                    - use `/plan` from now on, since the Bot stoped sending messages
                                                     - try `/get all` to see all variables
                                                     - try changing the `file_url` with `/set file_url <new value>`
                                                     - try changing the `username` with `/set username <new value>`
