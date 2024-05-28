@@ -13,3 +13,5 @@ from .deactivate_beta_features import deactivate_beta_features
 from .news import news
 from .feedback import feedback
 from .help import help
+from .use_new_plan_sending_method import use_new_plan_sending_method
+from .use_old_plan_sending_method import use_old_plan_sending_method

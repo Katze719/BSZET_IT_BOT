@@ -3,7 +3,6 @@ import os
 from ..helpers import *
 
 @discord.app_commands.command(name="print_parsed_table_experimental", description="print the parsed table")
-@experimental
 async def print_parsed_table_beta(ctx : discord.Interaction):
     parsed_dict = parse_table(f'{os.getenv("SETTINGS_VOLUME")}/{GuildSettings(ctx.guild).get("output_name")}.pdf')
             

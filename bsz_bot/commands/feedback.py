@@ -32,7 +32,6 @@ async def async_copy(source, destination, buffer_size=1024*1024):
             await dst.write(chunk)
 
 @discord.app_commands.command(name="feedback", description="Write feedback to the Active Developers.")
-@experimental
 async def feedback(ctx : discord.Interaction, msg : str):
     hash = secure_random_string(6)
 
