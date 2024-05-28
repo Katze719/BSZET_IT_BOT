@@ -94,7 +94,7 @@ async def check_plan__new(guild):
         if msg != '':
             await channel.send(embed=simple_embed(f'News for class `{s.get("class")}`', f"{msg}"))
         
-@tasks.loop(seconds=5)
+@tasks.loop(minutes=5)
 async def check_plan():
     logger.info("checking for new plans")
     for guild in BSZ_BOT.guilds:

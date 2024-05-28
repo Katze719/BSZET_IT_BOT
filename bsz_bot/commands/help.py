@@ -5,7 +5,7 @@ commands_info = [
     {"command": "/help", "description": "Prints a list of available commands", "experimental": False, "admin": False, "needs_class": False},
     {"command": "/activate", "description": "Activates the bot", "experimental": False, "admin": True, "needs_class": True},
     {"command": "/deactivate", "description": "Deactivates the bot", "experimental": False, "admin": True, "needs_class": False},
-    {"command": "/deactivate_experimental_features", "description": "Deactivates experimental features", "experimental": False, "admin": True, "needs_class": True},
+    {"command": "/deactivate_experimental_features", "description": "Deactivates experimental features", "experimental": False, "admin": True, "needs_class": False},
     {"command": "/activate_experimental_features", "description": "Activates experimental features", "experimental": False, "admin": True, "needs_class": True},
     {"command": "/set <variable_name> <value>", "description": "Sets the specified variable to the given value", "experimental": False, "admin": True, "needs_class": False},
     {"command": "/reset", "description": "Resets all variables to their default values", "experimental": False, "admin": True, "needs_class": False},
