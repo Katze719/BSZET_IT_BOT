@@ -23,51 +23,54 @@ def clean_line(line):
 def parse_table(pdf_path):
     schedule_data = defaultdict(list)
     
-    with pdfplumber.open(pdf_path) as pdf:
-        for page in pdf.pages:
-            text = page.extract_text()
-            if not text:
-                continue
-            
-            # Split text into lines
-            lines = text.splitlines()
-            current_class = None
-            current_date = None
-            current_normal_date = None
-            current_normal_day = None
-            
-            for line in lines:
-                cleaned_line = clean_line(line)
+    try:
+        with pdfplumber.open(pdf_path) as pdf:
+            for page in pdf.pages:
+                text = page.extract_text()
+                if not text:
+                    continue
                 
-                # Match lines that look like class headers
-                class_match = re.match(r'^([A-Z_]+\s*\d+/\d+)', cleaned_line)
-                if class_match:
-                    current_class = class_match.group(1)
-                elif re.match(r'^\b(Mo|Di|Mi|Do|Fr|Sa|So)\b \d{2}\.\d{2}\.\d{4}', cleaned_line):
-                    current_date = cleaned_line.split()  # Split to get date and day
-                elif "VLehrer Kürzel" in cleaned_line:
-                    continue  # Skip header line
-                elif current_class and current_date:
-                    details = re.split(r'\s{2,}', cleaned_line)  # Split on multiple spaces
-                    try:
-                        int(details[0])
-                    except ValueError:
-                        current_normal_date = details[0]
-                        current_normal_day = details[1]
-                        details = details[2:]
+                # Split text into lines
+                lines = text.splitlines()
+                current_class = None
+                current_date = None
+                current_normal_date = None
+                current_normal_day = None
+                
+                for line in lines:
+                    cleaned_line = clean_line(line)
+                    
+                    # Match lines that look like class headers
+                    class_match = re.match(r'^([A-Z_]+\s*\d+/\d+)', cleaned_line)
+                    if class_match:
+                        current_class = class_match.group(1)
+                    elif re.match(r'^\b(Mo|Di|Mi|Do|Fr|Sa|So)\b \d{2}\.\d{2}\.\d{4}', cleaned_line):
+                        current_date = cleaned_line.split()  # Split to get date and day
+                    elif "VLehrer Kürzel" in cleaned_line:
+                        continue  # Skip header line
+                    elif current_class and current_date:
+                        details = re.split(r'\s{2,}', cleaned_line)  # Split on multiple spaces
+                        try:
+                            int(details[0])
+                        except ValueError:
+                            current_normal_date = details[0]
+                            current_normal_day = details[1]
+                            details = details[2:]
 
-                    if len(details) >= 5:
-                        details_dict = {
-                            'date': current_normal_date,
-                            'day': current_normal_day,
-                            'position': details[0][0],
-                            'teacher': details[1],
-                            'subject': details[2],
-                            'room': details[3],
-                            'class': details[4],
-                            'info': details[5] if len(details) > 5 else '',
-                        }
-                        schedule_data[current_class].append(details_dict)
+                        if len(details) >= 5:
+                            details_dict = {
+                                'date': current_normal_date,
+                                'day': current_normal_day,
+                                'position': details[0][0],
+                                'teacher': details[1],
+                                'subject': details[2],
+                                'room': details[3],
+                                'class': details[4],
+                                'info': details[5] if len(details) > 5 else '',
+                            }
+                            schedule_data[current_class].append(details_dict)
+    except Exception as e:
+        print(e)
     
     event_list = [event for data in schedule_data.values() for event in data]
 

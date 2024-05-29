@@ -54,6 +54,16 @@ async def check_plan__new(guild):
             return
 
         plan = Plan(guild)
+        
+        parsed_plan_old = parse_table(f'{os.getenv("SETTINGS_VOLUME")}/{Plan(guild).get_file_name()}.pdf')
+        
+        msg_old = ''
+
+        for event in parsed_plan_old:
+            if s.get("class").replace(" ", "").lower() in event["class"].replace(" ", "").lower():
+                msg_old += f"```txt\nAm {event['date']} {event['day']}\nStunde: {event["hours"]}\nLehrer: {event["teacher"]}\nFach:   {event["subject"]}\nRaum:   {event["room"]}\nInfo:   {event["info"]}\n```\n"
+        
+
 
         if not await plan.new_plan_available():
             if plan.any_errors():
@@ -88,10 +98,10 @@ async def check_plan__new(guild):
         msg = ''
 
         for event in parsed_plan:
-            if s.get("class").replace(" ", "") in event["class"].replace(" ", ""):
+            if s.get("class").replace(" ", "").lower() in event["class"].replace(" ", "").lower():
                 msg += f"```txt\nAm {event['date']} {event['day']}\nStunde: {event["hours"]}\nLehrer: {event["teacher"]}\nFach:   {event["subject"]}\nRaum:   {event["room"]}\nInfo:   {event["info"]}\n```\n"
 
-        if msg != '':
+        if msg != '' and msg != msg_old:
             await channel.send(embed=simple_embed(f'News for class `{s.get("class")}`', f"{msg}"))
         
 @tasks.loop(minutes=5)

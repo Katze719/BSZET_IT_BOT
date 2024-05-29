@@ -43,7 +43,7 @@ async def get_news():
         msg = ''
 
         for event in parsed_plan:
-            if s.get("class").replace(" ", "") in event["class"].replace(" ", ""):
+            if s.get("class").replace(" ", "").lower() in event["class"].replace(" ", "").lower():
                 if is_tomorrow(event["date"]):
                     msg += f"Stunde: {event["hours"]}\nLehrer: {event["teacher"]}\nFach:   {event["subject"]}\nRaum:   {event["room"]}\nInfo:   {event["info"]}\n\n"
 

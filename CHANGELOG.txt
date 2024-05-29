@@ -1,3 +1,10 @@
+Version 5.0.1 - 2024-05-29
+
+### What's Changed
+- Die Klasse kann jetzt unabhängig von Leerzeichen oder Groß- und Kleinschreibung gesetzt werden. Beispiel: `IT 22/5` == `it22/5`.
+
+---
+
 Version 5.0.0 - 2024-05-28
 
 ### What's Changed

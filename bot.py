@@ -10,7 +10,7 @@ SUBSTITUTION_PLAN_PDF_URL = "https://geschuetzt.bszet.de/s-lk-vw/Vertretungsplae
 USERNAME = "bsz-et-2324"
 PASSWORD = "schulleiter#23"
 
-CURRENT_VERSION = "v5.0.0"
+CURRENT_VERSION = "v5.0.1"
 CURRENT_VERSION_FILE = f"{os.getenv('SETTINGS_VOLUME')}/version.txt"
 
 if __name__ == '__main__':
