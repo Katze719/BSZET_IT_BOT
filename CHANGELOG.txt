@@ -1,3 +1,13 @@
+Version 5.0.3 - 2024-07-10
+
+## What's Changed
+* Create CODE_OF_CONDUCT.md by @Katze719 in https://github.com/Katze719/BSZET_IT_BOT/pull/21
+* Create SECURITY.md by @Katze719 in https://github.com/Katze719/BSZET_IT_BOT/pull/22
+* Update issue templates by @Katze719 in https://github.com/Katze719/BSZET_IT_BOT/pull/24
+* Bump certifi from 2023.7.22 to 2024.7.4 by @dependabot in https://github.com/Katze719/BSZET_IT_BOT/pull/27
+
+---
+
 Version 5.0.2 - 2024-06-24
 
 ### What's Changed
