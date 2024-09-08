@@ -1,4 +1,13 @@
-# BSZET_IT_BOT
+# BSZET_IT_BOT (Archived)
+
+## 🚀 Why Is This Project Archived?
+Our school has introduced an official app that provides real-time timetable updates, rendering this bot obsolete. While it was a helpful tool during its time, this repository will no longer be maintained or updated.
+
+## 🛑 Archive Notice
+As of 08.09.2024, this project is officially archived. No further updates or bug fixes will be provided. Feel free to explore the code, but please note that it might not work with the current systems in place at our school.
+
+---
+
 - [bszet website](https://geschuetzt.bszet.de/index.php?dir=/Schuelerbereich/BS&sort=name)
 
 current username + password:
