@@ -2,7 +2,7 @@ import discord
 import os
 from bsz_bot import BSZ_BOT, setup_tasks, send_update_info, Plan, log
 
-os.environ['SETTINGS_VOLUME'] = '/settings'
+os.environ['SETTINGS_VOLUME'] = './settings'
 
 SUBSTITUTION_PLAN_PDF_URL = "https://geschuetzt.bszet.de/s-lk-vw/Vertretungsplaene/vertretungsplan-bs-it.pdf"
 
@@ -10,7 +10,7 @@ SUBSTITUTION_PLAN_PDF_URL = "https://geschuetzt.bszet.de/s-lk-vw/Vertretungsplae
 USERNAME = "bsz-et-2324"
 PASSWORD = "schulleiter#23"
 
-CURRENT_VERSION = "v5.0.3"
+CURRENT_VERSION = "v5.0.4"
 CURRENT_VERSION_FILE = f"{os.getenv('SETTINGS_VOLUME')}/version.txt"
 
 if __name__ == '__main__':
